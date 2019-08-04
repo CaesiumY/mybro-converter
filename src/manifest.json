@@ -1,0 +1,23 @@
+{
+  "name": "우리 형 변환기",
+  "description": "우리 형은 이제 메시다.",
+  "version": 1.0,
+  "manifest_version": 2,
+  "icons": {
+    "48": "icons/icon_48.png",
+    "128": "icons/icon_128.png"
+  },
+  "browser_action": {
+    "default_title": "bro-converter",
+    "default_popup": "popup/popup.html"
+  },
+  "background": {
+    "scripts": [
+      "background.js"
+    ]
+  },
+  "permissions": [
+    "activeTab",
+    "storage"
+  ]
+}
