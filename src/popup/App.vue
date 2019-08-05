@@ -5,6 +5,7 @@
         <i class="el-icon-refresh"></i>
         {{title}}
       </h1>
+
       <br />
     </header>
 
@@ -13,7 +14,10 @@
     </main>
 
     <footer>
-      <p v-if="value">활성화</p>
+      <p v-if="value">
+        활성화
+        <i class="el-icon-loading"></i>
+      </p>
       <p v-else>비활성화</p>
     </footer>
   </div>
