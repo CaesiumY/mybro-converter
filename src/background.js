@@ -11,9 +11,7 @@ function executeCode() {
 
 function getStorage() {
   chrome.storage.sync.get(null, result => {
-    //   alert(result.value);
     if (result.value) {
-      //   alert(result.value);
       CURRENT_SWITCH = result.value;
 
       executeCode();
@@ -24,7 +22,6 @@ function getStorage() {
 function myListener(tabId, changeInfo, tab) {
   getStorage();
   if (changeInfo.status === 'complete' && CURRENT_SWITCH === 'true') {
-    alert('listen');
     executeCode();
   }
 }
