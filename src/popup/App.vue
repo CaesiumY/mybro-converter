@@ -50,7 +50,7 @@ export default {
       } else {
         chrome.tabs.executeScript(
           {
-            code: 'location.reload()',
+            code: '',
           },
           result => {}
         );
