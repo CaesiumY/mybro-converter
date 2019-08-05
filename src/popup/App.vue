@@ -2,14 +2,14 @@
   <div id="app">
     <header>
       <h1>
-        <i class="el-icon-refresh" @click="setMe"></i>
+        <i class="el-icon-refresh"></i>
         {{title}}
       </h1>
       <br />
     </header>
 
     <main>
-      <el-switch @change="setMe" v-model="value" active-text="우리 형" inactive-text="느그 형"></el-switch>
+      <el-switch @change="changeSwitch()" v-model="value" active-text="우리 형" inactive-text="느그 형"></el-switch>
     </main>
 
     <footer>
@@ -24,14 +24,36 @@ export default {
   data() {
     return {
       title: '우리 형 변환기',
-      value: true,
+      value: false,
     };
   },
-  created() {},
+  created() {
+    chrome.storage.sync.get(null, result => {
+      this.value = result.value;
+    });
+  },
   methods: {
-    setMe: function() {
+    saveStorage: function() {
+      chrome.storage.sync.set({
+        value: this.value,
+      });
+    },
+    changeSwitch: function() {
+      this.saveStorage();
       if (this.value) {
-        alert(this.value);
+        chrome.tabs.executeScript(
+          {
+            code: 'document.body.innerHTML = document.body.innerHTML.replace(/호/g, "메");',
+          },
+          result => {}
+        );
+      } else {
+        chrome.tabs.executeScript(
+          {
+            code: 'location.reload()',
+          },
+          result => {}
+        );
       }
     },
   },
