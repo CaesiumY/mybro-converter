@@ -2,18 +2,19 @@
   <div id="app">
     <header>
       <h1>
-        <i class="el-icon-refresh"></i>
+        <i class="el-icon-refresh" @click="setMe"></i>
         {{title}}
       </h1>
       <br />
     </header>
 
     <main>
-      <el-switch v-model="value" active-text="우리 형" inactive-text="느그 형"></el-switch>
+      <el-switch @change="setMe" v-model="value" active-text="우리 형" inactive-text="느그 형"></el-switch>
     </main>
 
     <footer>
-      <p>{{value}}</p>
+      <p v-if="value">활성화</p>
+      <p v-else>비활성화</p>
     </footer>
   </div>
 </template>
@@ -27,7 +28,13 @@ export default {
     };
   },
   created() {},
-  methods: {},
+  methods: {
+    setMe: function() {
+      if (this.value) {
+        alert(this.value);
+      }
+    },
+  },
 };
 </script>
 
