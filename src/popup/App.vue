@@ -3,7 +3,7 @@
     <header>
       <h1>
         <i class="el-icon-refresh"></i>
-        {{title}}
+        {{ title }}
       </h1>
 
       <br />
@@ -49,14 +49,18 @@ export default {
           {
             code: 'document.body.innerHTML = document.body.innerHTML.replace(/호/g, "메");',
           },
-          result => {}
+          result => {
+            chrome.browserAction.setIcon({ path: '../icons/icon48.png' });
+          }
         );
       } else {
         chrome.tabs.executeScript(
           {
             code: 'location.reload()',
           },
-          result => {}
+          result => {
+            chrome.browserAction.setIcon({ path: '../icons/icon2_48.png' });
+          }
         );
       }
     },
